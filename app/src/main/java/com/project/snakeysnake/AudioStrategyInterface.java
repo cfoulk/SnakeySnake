@@ -15,11 +15,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.io.IOException;
 
-
-//should delete whats unused later ^
-
-
-public class AudioOutputAndroidStrategy implements AudioOutputStrategy{
+//Delete unused imports later
 
 
+public interface AudioStrategyInterface {
+    //play(audio file)
 }
