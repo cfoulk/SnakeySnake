@@ -26,6 +26,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
 
+
+    //TODO migrate this to strategy pattern
     // for playing sound effects
     private SoundPool mSP;
     private int mEat_ID = -1;
@@ -59,7 +61,9 @@ class SnakeGame extends SurfaceView implements Runnable{
         // How many blocks of the same size will fit into the height
         mNumBlocksHigh = size.y / blockSize;
 
-        // Initialize the SoundPool
+
+        //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
+        // Initializing the SoundPool from here as seamlessly as possible
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -87,6 +91,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         } catch (IOException e) {
             // Error
         }
+        //TODO *NICK* Sound handling ends here
+
 
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
@@ -100,12 +106,14 @@ class SnakeGame extends SurfaceView implements Runnable{
                 .build();
 
 
-
+        //Here lies the original call for apple object construction... R.I.P
         /*mApple = new Apple(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
-                blockSize);
-*/
+                blockSize); */
+
+
+
         mSnake = new Snake(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
@@ -187,6 +195,8 @@ class SnakeGame extends SurfaceView implements Runnable{
             // Add to  mScore
             mScore = mScore + 1;
 
+
+            //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
