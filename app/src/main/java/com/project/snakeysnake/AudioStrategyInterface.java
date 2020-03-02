@@ -20,4 +20,6 @@ import java.io.IOException;
 
 public interface AudioStrategyInterface {
     //play(audio file)
+    public void AppleEatingSound();
+    public SoundPool findStrategy(SoundPool mSP);
 }

@@ -69,6 +69,11 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
         // Initializing the SoundPool from here as seamlessly as possible
+        AudioOutputStrategy audioOutputStrategy = new AudioOutputStrategy(context);
+        mSP = audioOutputStrategy.findStrategy(mSP);
+
+
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -95,7 +100,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         } catch (IOException e) {
             // Error
-        }
+        }*/
         //TODO *NICK* Sound handling ends here
 
 
@@ -187,6 +192,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() {
+        AudioStrategyInterface audioOutputStrategy = new AudioOutputStrategy(getContext());
 
         // Move the snake
         mSnake.move();
@@ -203,7 +209,9 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
-            mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+
+            audioOutputStrategy.AppleEatingSound();
+           mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
 
         // Did the snake die?

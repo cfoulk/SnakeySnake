@@ -22,19 +22,26 @@ public class AudioOutputStrategy implements AudioStrategyInterface {
 
     public AudioOutputStrategy(Context context){
         this.context = context;
+        findStrategy(mSP);
 
+
+    }
+
+
+
+    public SoundPool findStrategy(SoundPool mSP){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build();
 
-            mSP = new SoundPool.Builder()
+            this.mSP = new SoundPool.Builder()
                     .setMaxStreams(5)
                     .setAudioAttributes(audioAttributes)
                     .build();
         } else {
-            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+            this.mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         }
         try {
             AssetManager assetManager = context.getAssets();
@@ -42,20 +49,24 @@ public class AudioOutputStrategy implements AudioStrategyInterface {
 
             // Prepare the sounds in memory
             descriptor = assetManager.openFd("get_apple.ogg");
-            mEat_ID = mSP.load(descriptor, 0);
+            mEat_ID = this.mSP.load(descriptor, 0);
 
             descriptor = assetManager.openFd("snake_death.ogg");
-            mCrashID = mSP.load(descriptor, 0);
+            mCrashID = this.mSP.load(descriptor, 0);
 
         } catch (IOException e) {
             // Error
         }
 
+
+        return this.mSP;
     }
+
 
     public void AppleEatingSound(){
         mSP.play(mEat_ID, 1, 1, 0, 0, 1);
     }
+
 
 
 
