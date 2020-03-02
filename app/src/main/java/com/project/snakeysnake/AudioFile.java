@@ -22,42 +22,45 @@ import java.io.IOException;
 
 public class AudioFile {
     Context context;
-    private int mEat_ID = -1;
-    private int mCrashID = -1;
-    private SoundPool mSP;
+    public int mEat_ID;
+    public int mCrashID = -1;
+    public SoundPool mSP;
     AssetManager assetManager;
+
+
     //Constructor for Audio File Object
-    AudioFile(Context context, AssetManager assetManager){
+    AudioFile(AssetManager assetManager){
         this.assetManager = assetManager;
-        this.context = context;
+    }
+
+    void AppleEatenSound(AssetManager assetManager) throws IOException
+    {
+        System.out.println("You got to this place");
+        AssetFileDescriptor descriptor;
+
+        // Prepare the sounds in memory
+        descriptor = assetManager.openFd("get_apple.ogg");
+
+        this.mEat_ID = this.mSP.load(descriptor, 0);
+
+
+
+
 
     }
 
-
-
-    void AddAudioFile(){}
-
-    void RemoveAudioFile(){}
-
-    void AppleEatenSound() throws IOException {
+    void playSnakeDeathSound() throws IOException {
 
         try{
             AssetFileDescriptor descriptor;
-
-            // Prepare the sounds in memory
-            descriptor = assetManager.openFd("get_apple.ogg");
-            this.mEat_ID = this.mSP.load(descriptor, 0);
-
-           /* descriptor = assetManager.openFd("snake_death.ogg");
-            this.mCrashID = this.mSP.load(descriptor, 0);8= */
+            descriptor = assetManager.openFd("snake_death.ogg");
+            this.mCrashID = this.mSP.load(descriptor, 0);
         } catch (IOException e) {
-            System.out.println("couldn't find apple sound");
+            System.out.println("couldn't find death of snake sound");
         }
 
 
 
     }
-
-
 
 }
