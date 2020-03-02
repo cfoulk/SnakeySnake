@@ -43,6 +43,8 @@ class Snake extends GameObject {
     // A bitmap for the body
     private Bitmap mBitmapBody;
 
+    private SnakeBody snakeBody;
+
 
     Snake(Context context, Point mr, int ss) {
 
@@ -100,13 +102,14 @@ class Snake extends GameObject {
                         0, 0, ss, ss, matrix, true);
 
         // Create and scale the body
-        mBitmapBody = BitmapFactory
+        /*mBitmapBody = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.body);
 
         mBitmapBody = Bitmap
                 .createScaledBitmap(mBitmapBody,
-                        ss, ss, false);
+                        ss, ss, false);*/
+        snakeBody = new SnakeBody(context, ss);
 
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
@@ -246,13 +249,14 @@ class Snake extends GameObject {
             }
 
             // Draw the snake body one block at a time
-            for (int i = 1; i < segmentLocations.size(); i++) {
+            /*for (int i = 1; i < segmentLocations.size(); i++) {
                 canvas.drawBitmap(mBitmapBody,
                         segmentLocations.get(i).x
                                 * mSegmentSize,
                         segmentLocations.get(i).y
-                                * mSegmentSize, paint);
-            }
+                                * mSegmentSize, paint);*/
+            snakeBody.draw(segmentLocations, mSegmentSize, paint, canvas);
+            
         }
     }
 
