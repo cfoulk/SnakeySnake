@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 class SnakeHead implements SnakeComponent{
 
+    // A bitmap for each direction the head can face
     private Bitmap mBitmapHeadRight;
     private Bitmap mBitmapHeadLeft;
     private Bitmap mBitmapHeadUp;
     private Bitmap mBitmapHeadDown;
 
     private int mSegmentSize;
-    private int halfWayPoint;
 
     private Heading heading;
 
@@ -75,7 +75,6 @@ class SnakeHead implements SnakeComponent{
                 .createBitmap(mBitmapHeadRight,
                         0, 0, ss, ss, matrix, true);
 
-        halfWayPoint = mr.x * ss / 2;
     }
 
 
@@ -117,46 +116,4 @@ class SnakeHead implements SnakeComponent{
                 break;
         }
     }
-
-    /*void switchHeading(MotionEvent motionEvent) {
-
-        // Is the tap on the right hand side?
-        if (motionEvent.getX() >= halfWayPoint) {
-            switch (heading) {
-                // Rotate right
-                case UP:
-                    heading = Heading.RIGHT;
-                    break;
-                case RIGHT:
-                    heading = Heading.DOWN;
-                    break;
-                case DOWN:
-                    heading = Heading.LEFT;
-                    break;
-                case LEFT:
-                    heading = Heading.UP;
-                    break;
-
-            }
-        } else {
-            // Rotate left
-            switch (heading) {
-                case UP:
-                    heading = Heading.LEFT;
-                    break;
-                case LEFT:
-                    heading = Heading.DOWN;
-                    break;
-                case DOWN:
-                    heading = Heading.RIGHT;
-                    break;
-                case RIGHT:
-                    heading = Heading.UP;
-                    break;
-            }
-        }
-    }*/
-
-
-
 }
