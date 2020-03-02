@@ -63,8 +63,8 @@ public class AudioPlayer implements IAudioPlayer {
 
     }
 
-    @Override
-    public void AppleEatingSound(){
+    //@Override
+    public void playAppleEatingSound(){
         this.mSP.play(mEat_ID, 1, 1, 0, 0, 1);
     }
 

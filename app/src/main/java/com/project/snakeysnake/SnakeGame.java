@@ -192,7 +192,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() {
-        IAudioPlayer audioOutputStrategy = new AudioPlayer(getContext(), mSP);
+        IAudioPlayer audioInterface = new AudioPlayer(getContext(), mSP);
 
         // Move the snake
         mSnake.move();
@@ -210,7 +210,8 @@ class SnakeGame extends SurfaceView implements Runnable{
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
 
-            audioOutputStrategy.AppleEatingSound();
+            audioInterface.playAppleEatingSound();
+            //following line moved down to inherited objects
            //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
 
