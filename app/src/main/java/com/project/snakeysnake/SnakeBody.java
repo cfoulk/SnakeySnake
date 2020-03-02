@@ -41,4 +41,12 @@ public class SnakeBody implements SnakeComponent{
                             * mSegmentSize, paint);
         }
     }
+
+    public void remove(ArrayList<Point> segmentLocations, Canvas canvas, Paint paint){
+        if (segmentLocations.size() > 0){
+            for (int i = 1; i < 2; i++){
+                segmentLocations.remove(segmentLocations.size()-1);
+            }
+        }
+    }
 }
