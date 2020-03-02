@@ -6,6 +6,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.provider.MediaStore;
 
 import java.io.IOException;
 
@@ -64,7 +65,14 @@ public class AudioPlayer implements IAudioPlayer {
     }
 
     //@Override
-    public void playAppleEatingSound(){
+    public void playAppleEatingSound() throws IOException {
+        AudioFile audioFile = new AudioFile(this.context);
+
+        AssetManager assetManager = context.getAssets();
+
+
+        audioFile.AppleEatenSound(assetManager);
+
         this.mSP.play(mEat_ID, 1, 1, 0, 0, 1);
     }
 

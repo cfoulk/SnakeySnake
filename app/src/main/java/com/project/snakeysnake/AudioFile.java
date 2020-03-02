@@ -37,10 +37,9 @@ public class AudioFile {
 
     void RemoveAudioFile(){}
 
-    void AppleEatenSound() throws IOException {
+    void AppleEatenSound(AssetManager assetManager) throws IOException {
 
         try{
-            AssetManager assetManager = context.getAssets();
             AssetFileDescriptor descriptor;
 
             // Prepare the sounds in memory
