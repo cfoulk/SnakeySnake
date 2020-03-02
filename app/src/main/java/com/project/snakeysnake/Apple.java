@@ -12,7 +12,7 @@ public class Apple{
 
     // The location of the apple on the grid
     // Not in pixels
-    private Point location = new Point();
+    private final Point location;
 
     // The range of values we can choose from
     // to spawn an apple
@@ -25,7 +25,7 @@ public class Apple{
 
     // An image to represent the apple
     //private final Bitmap mBitmapApple;
-    private Bitmap mBitmapApple;
+    Bitmap mBitmapApple;
 
 
 
@@ -35,19 +35,23 @@ public class Apple{
         this.mSpawnRange = appleBuilder.mSpawnRange;
         this.mSize = appleBuilder.mSize;
         this.context = appleBuilder.context;
-        //this.mBitmapApple = appleBuilder.mBitmapApple;
+        mBitmapApple = appleBuilder.mBitmapApple;
+        this.location = appleBuilder.location;
+
+
+
         // Load the image to the bitmap
-        this.mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
 
         // Resize the bitmap
-        this.mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
+        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
 
         // Make a note of the passed in spawn range
         //mSpawnRange = sr;
         // Make a note of the size of an apple
         //mSize = s;
-        // Hide the apple off-screen until the game starts
-        // location.x = -10;
+        //Hide the apple off-screen until the game starts
+        //location.x = -10;
 
 
 
@@ -57,12 +61,7 @@ public class Apple{
 
     //get methods only provide immutability
 
-    // Draw the apple
-    void draw(Canvas canvas, Paint paint){
-        canvas.drawBitmap(mBitmapApple,
-                location.x * mSize, location.y * mSize, paint);
 
-    }
 
 
 
@@ -78,9 +77,15 @@ public class Apple{
         return mSize;
     }
 
+    public Bitmap mBitmapApple(){
+        return mBitmapApple;
+    }
 
-
-
+    // Let SnakeGame know where the apple is
+    // SnakeGame can share this with the snake
+    public Point getLocation(){
+        return location;
+    }
 
     // This is called every time an apple is eaten
     void spawn(){
@@ -92,11 +97,7 @@ public class Apple{
 
 
 
-    // Let SnakeGame know where the apple is
-    // SnakeGame can share this with the snake
-    Point getLocation(){
-        return location;
-    }
+
 
 
 
@@ -112,14 +113,9 @@ public class Apple{
         private final Point mSpawnRange;
         private final int mSize;
 
-
-        // An interchangeable image to represent the apple
         private Bitmap mBitmapApple;
-        // Load the image to the bitmap
-        //mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+        // An interchangeable image to represent the apple
 
-        // Resize the bitmap
-        //mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
 
         /// Set up the apple in the constructor
         public AppleBuilder(Context context, Point mSpawnRange, int mSize){
@@ -129,8 +125,9 @@ public class Apple{
             // Make a note of the size of an apple
             this.mSize = mSize;
             // Hide the apple off-screen until the game starts
-
-
+           // this.location = new Point();
+            this.mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);;
+            this.mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
 
         }
 
@@ -138,28 +135,36 @@ public class Apple{
 
 
 
-        public AppleBuilder mBitmapApple(Bitmap mBitmapApple){
-            this.mBitmapApple = mBitmapApple;
+        public AppleBuilder goodAppleBitmap(Bitmap mBitmapApple){
+            // Load the image to the bitmap
+            this.mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+            // Resize the bitmap
+            this.mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
+
+
             return this;
         }
 
 
-/*
-        public AppleBuilder mSpawnRange(Point mSpawnRange){
-            this.mSpawnRange = mSpawnRange;
-            return this;
-        }
-*/
         // Draw the apple
         public Apple build(){
             return new Apple(this);
 
         }
 
+
+
+
+
     }
 
 
+    // Draw the apple
+    void draw(Canvas canvas, Paint paint){
+        canvas.drawBitmap(mBitmapApple,
+                location.x * mSize, location.y * mSize, paint);
 
+    }
 
 }
 

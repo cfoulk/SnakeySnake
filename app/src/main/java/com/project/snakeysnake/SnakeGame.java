@@ -94,8 +94,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // Call the constructors of our two game objects
 
-        Apple mApple = new Apple.AppleBuilder(
-                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize).build();
+        Apple mApple = new Apple.AppleBuilder(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize).build();
 
 
         /*mApple = new Apple(context,
