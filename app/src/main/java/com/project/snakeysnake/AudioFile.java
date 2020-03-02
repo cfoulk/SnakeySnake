@@ -48,10 +48,10 @@ public class AudioFile {
             descriptor = assetManager.openFd("get_apple.ogg");
             this.mEat_ID = this.mSP.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("snake_death.ogg");
-            mCrashID = this.mSP.load(descriptor, 0);
+           /* descriptor = assetManager.openFd("snake_death.ogg");
+            this.mCrashID = this.mSP.load(descriptor, 0);8= */
         } catch (IOException e) {
-            // Error
+            System.out.println("couldn't find apple sound");
         }
 
 
