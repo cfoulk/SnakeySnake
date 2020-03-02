@@ -25,8 +25,10 @@ public class AudioFile {
     private int mEat_ID = -1;
     private int mCrashID = -1;
     private SoundPool mSP;
+    AssetManager assetManager;
     //Constructor for Audio File Object
-    AudioFile(Context context){
+    AudioFile(Context context, AssetManager assetManager){
+        this.assetManager = assetManager;
         this.context = context;
 
     }
@@ -37,7 +39,7 @@ public class AudioFile {
 
     void RemoveAudioFile(){}
 
-    void AppleEatenSound(AssetManager assetManager) throws IOException {
+    void AppleEatenSound() throws IOException {
 
         try{
             AssetFileDescriptor descriptor;

@@ -23,7 +23,8 @@ public class AudioPlayer implements IAudioPlayer {
 
     public AudioPlayer(Context context, SoundPool mSP){
         this.context = context;
-        findStrategy(mSP);
+        this.mSP = mSP;
+        //findStrategy(mSP);
 
 
     }
@@ -45,16 +46,29 @@ public class AudioPlayer implements IAudioPlayer {
         }
         //AudioFile audioFile = new AudioFile(context);
 
+
+
+
+
+    }
+
+    @Override
+    public void playAppleEatingSound() throws IOException {
+
+        AssetManager assetManager = context.getAssets();
+        AssetFileDescriptor descriptor;
+
         try {
-            AssetManager assetManager = context.getAssets();
-            AssetFileDescriptor descriptor;
 
             // Prepare the sounds in memory
             descriptor = assetManager.openFd("get_apple.ogg");
             mEat_ID = mSP.load(descriptor, 0);
+            AudioFile audioFile = new AudioFile(context, assetManager);
+            audioFile.AppleEatenSound();
 
             descriptor = assetManager.openFd("snake_death.ogg");
             mCrashID = mSP.load(descriptor, 0);
+
 
         } catch (IOException e) {
             // Error
@@ -62,18 +76,9 @@ public class AudioPlayer implements IAudioPlayer {
 
 
 
-    }
-
-    //@Override
-    public void playAppleEatingSound() throws IOException {
-        AudioFile audioFile = new AudioFile(this.context);
-
-        AssetManager assetManager = context.getAssets();
 
 
-        audioFile.AppleEatenSound(assetManager);
 
-        this.mSP.play(mEat_ID, 1, 1, 0, 0, 1);
     }
 
 

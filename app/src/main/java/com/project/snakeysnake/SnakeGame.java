@@ -214,7 +214,8 @@ class SnakeGame extends SurfaceView implements Runnable{
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
-                audioInterface.playAppleEatingSound();
+               // audioInterface.playAppleEatingSound();
+                mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
                 System.out.println("couldnt play apple sound");
