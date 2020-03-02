@@ -156,7 +156,11 @@ class SnakeGame extends SurfaceView implements Runnable{
             if(!mPaused) {
                 // Update 10 times a second
                 if (updateRequired()) {
-                    update();
+                    try {
+                        update();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -191,7 +195,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
 
     // Update all the game objects
-    public void update() {
+    public void update() throws IOException {
         IAudioPlayer audioInterface = new AudioPlayer(getContext(), mSP);
 
         // Move the snake
@@ -209,8 +213,13 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
+            try{
+                audioInterface.playAppleEatingSound();
+            }
+            catch (Exception e){
+                System.out.println("couldnt play apple sound");
+            }
 
-            audioInterface.playAppleEatingSound();
             //following line moved down to inherited objects
            //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
