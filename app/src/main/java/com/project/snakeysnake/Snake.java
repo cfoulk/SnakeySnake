@@ -256,7 +256,7 @@ class Snake extends GameObject {
                         segmentLocations.get(i).y
                                 * mSegmentSize, paint);*/
             snakeBody.draw(segmentLocations, mSegmentSize, paint, canvas);
-            
+
         }
     }
 
