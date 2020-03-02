@@ -38,19 +38,6 @@ public class Apple{
         this.mBitmapApple = appleBuilder.mBitmapApple;
         this.location = appleBuilder.location;
 
-
-
-
-
-        // Make a note of the passed in spawn range
-        //mSpawnRange = sr;
-        // Make a note of the size of an apple
-        //mSize = s;
-        //Hide the apple off-screen until the game starts
-        //location.x = -10;
-
-
-
     }
 
 
@@ -58,24 +45,6 @@ public class Apple{
     //get methods only provide immutability
 
 
-
-
-
-
-    public Context getContext(){
-        return context;
-    }
-
-    public Point getmSpawnRange(){
-        return mSpawnRange;
-    }
-    public int getmSize(){
-        return mSize;
-    }
-
-    public Bitmap mBitmapApple(){
-        return mBitmapApple;
-    }
 
     // Let SnakeGame know where the apple is
     // SnakeGame can share this with the snake
@@ -91,7 +60,12 @@ public class Apple{
         location.y = random.nextInt(mSpawnRange.y - 1) + 1;
     }
 
+    // Draw the apple
+    void draw(Canvas canvas, Paint paint){
+        canvas.drawBitmap(mBitmapApple,
+                this.location.x * this.mSize, this.location.y * this.mSize, paint);
 
+    }
 
 
 
@@ -102,7 +76,7 @@ public class Apple{
 
     public static class AppleBuilder{
 
-        private Point location = new Point();
+        private Point location;
         // The range of values we can choose from to spawn an apple
 
         private final Context context;
@@ -123,7 +97,8 @@ public class Apple{
 
 
             // Hide the apple off-screen until the game starts
-           // this.location = new Point();
+            this.location = new Point();
+            this.location.x = -10;
 
         }
 
@@ -147,6 +122,7 @@ public class Apple{
         // Draw the apple
         public Apple build(){
             Apple apple = new Apple(this);
+
             return apple;
 
         }
@@ -158,12 +134,7 @@ public class Apple{
     }
 
 
-    // Draw the apple
-    void draw(Canvas canvas, Paint paint){
-        canvas.drawBitmap(mBitmapApple,
-                location.x * mSize, location.y * mSize, paint);
 
-    }
 
 }
 
