@@ -32,8 +32,6 @@ public class SnakeBody implements SnakeComponent{
     }
 
 
-
-    @Override
     public void draw(ArrayList<Point> segmentLocations, Canvas canvas, Paint paint){
         for (int i = 1; i < segmentLocations.size(); i++) {
             canvas.drawBitmap(mBitmapBody,

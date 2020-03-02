@@ -7,11 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.view.MotionEvent;
+import com.project.snakeysnake.Snake.Heading;
 
 import java.util.ArrayList;
 
-public class SnakeHead implements SnakeComponent{
+class SnakeHead implements SnakeComponent{
 
     private Bitmap mBitmapHeadRight;
     private Bitmap mBitmapHeadLeft;
@@ -21,15 +21,15 @@ public class SnakeHead implements SnakeComponent{
     private int mSegmentSize;
     private int halfWayPoint;
 
-    private enum Heading {
-        UP, RIGHT, DOWN, LEFT
-    }
+    private Heading heading;
 
-    private Heading heading = Heading.RIGHT;
 
-    SnakeHead(Context context, int ss, int mSegmentSize, Point mr){
+    SnakeHead(Context context, int ss, int mSegmentSize, Point mr, Heading heading){
 
         this.mSegmentSize = mSegmentSize;
+
+        this.heading = heading;
+
 
         mBitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
@@ -83,47 +83,42 @@ public class SnakeHead implements SnakeComponent{
     @Override
     public void draw(ArrayList<Point> segmentLocations, Canvas canvas, Paint paint) {
 
-        // Don't run this code if ArrayList has nothing in it
-        if (!segmentLocations.isEmpty()) {
-            // All the code from this method goes here
-            // Draw the head
-            switch (heading) {
-                case RIGHT:
-                    canvas.drawBitmap(mBitmapHeadRight,
-                            segmentLocations.get(0).x
-                                    * mSegmentSize,
-                            segmentLocations.get(0).y
-                                    * mSegmentSize, paint);
-                    break;
+        switch (heading) {
+            case RIGHT:
+                canvas.drawBitmap(mBitmapHeadRight,
+                        segmentLocations.get(0).x
+                                * mSegmentSize,
+                        segmentLocations.get(0).y
+                                * mSegmentSize, paint);
+                break;
 
-                case LEFT:
-                    canvas.drawBitmap(mBitmapHeadLeft,
-                            segmentLocations.get(0).x
-                                    * mSegmentSize,
-                            segmentLocations.get(0).y
-                                    * mSegmentSize, paint);
-                    break;
+            case LEFT:
+                canvas.drawBitmap(mBitmapHeadLeft,
+                        segmentLocations.get(0).x
+                                * mSegmentSize,
+                        segmentLocations.get(0).y
+                                * mSegmentSize, paint);
+                break;
 
-                case UP:
-                    canvas.drawBitmap(mBitmapHeadUp,
-                            segmentLocations.get(0).x
-                                    * mSegmentSize,
-                            segmentLocations.get(0).y
-                                    * mSegmentSize, paint);
-                    break;
+            case UP:
+                canvas.drawBitmap(mBitmapHeadUp,
+                        segmentLocations.get(0).x
+                                * mSegmentSize,
+                        segmentLocations.get(0).y
+                                * mSegmentSize, paint);
+                break;
 
-                case DOWN:
-                    canvas.drawBitmap(mBitmapHeadDown,
-                            segmentLocations.get(0).x
-                                    * mSegmentSize,
-                            segmentLocations.get(0).y
-                                    * mSegmentSize, paint);
-                    break;
-            }
+            case DOWN:
+                canvas.drawBitmap(mBitmapHeadDown,
+                        segmentLocations.get(0).x
+                                * mSegmentSize,
+                        segmentLocations.get(0).y
+                                * mSegmentSize, paint);
+                break;
         }
     }
 
-    void switchHeading(MotionEvent motionEvent) {
+    /*void switchHeading(MotionEvent motionEvent) {
 
         // Is the tap on the right hand side?
         if (motionEvent.getX() >= halfWayPoint) {
@@ -160,7 +155,8 @@ public class SnakeHead implements SnakeComponent{
                     break;
             }
         }
-    }
+    }*/
+
 
 
 }

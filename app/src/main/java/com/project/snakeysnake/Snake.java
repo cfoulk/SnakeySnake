@@ -27,12 +27,12 @@ class Snake extends GameObject {
     private int halfWayPoint;
 
     // For tracking movement Heading
-    private enum Heading {
+    public enum Heading {
         UP, RIGHT, DOWN, LEFT
     }
 
     // Start by heading to the right
-    private Heading heading = Heading.RIGHT;
+    public Heading heading = Heading.RIGHT;
 
     // A bitmap for each direction the head can face
     private Bitmap mBitmapHeadRight;
@@ -58,7 +58,7 @@ class Snake extends GameObject {
         mMoveRange = mr;
 
         // Create and scale the bitmaps
-        snakeHead = new SnakeHead(context, ss, mSegmentSize, mr);
+        snakeHead = new SnakeHead(context, ss, mSegmentSize, mr, heading);
         /*
         mBitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
@@ -116,7 +116,7 @@ class Snake extends GameObject {
 
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
-        //halfWayPoint = mr.x * ss / 2;
+        halfWayPoint = mr.x * ss / 2;
     }
 
     // Get the snake ready for a new game
