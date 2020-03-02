@@ -13,14 +13,14 @@ import java.io.IOException;
 //should delete whats unused later ^
 
 
-public class AudioOutputStrategy implements AudioStrategyInterface {
+public class AudioPlayer implements IAudioPlayer {
 
     private SoundPool mSP;
     private int mEat_ID = -1;
     private int mCrashID = -1;
     private Context context;
 
-    public AudioOutputStrategy(Context context){
+    public AudioPlayer(Context context, SoundPool mSP){
         this.context = context;
         findStrategy(mSP);
 
@@ -28,43 +28,44 @@ public class AudioOutputStrategy implements AudioStrategyInterface {
     }
 
 
-
-    public SoundPool findStrategy(SoundPool mSP){
+    public void findStrategy(SoundPool mSP) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build();
 
-            this.mSP = new SoundPool.Builder()
+            mSP = new SoundPool.Builder()
                     .setMaxStreams(5)
                     .setAudioAttributes(audioAttributes)
                     .build();
         } else {
-            this.mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         }
+        //AudioFile audioFile = new AudioFile(context);
+
         try {
             AssetManager assetManager = context.getAssets();
             AssetFileDescriptor descriptor;
 
             // Prepare the sounds in memory
             descriptor = assetManager.openFd("get_apple.ogg");
-            mEat_ID = this.mSP.load(descriptor, 0);
+            mEat_ID = mSP.load(descriptor, 0);
 
             descriptor = assetManager.openFd("snake_death.ogg");
-            mCrashID = this.mSP.load(descriptor, 0);
+            mCrashID = mSP.load(descriptor, 0);
 
         } catch (IOException e) {
             // Error
         }
 
 
-        return this.mSP;
+
     }
 
-
+    @Override
     public void AppleEatingSound(){
-        mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+        this.mSP.play(mEat_ID, 1, 1, 0, 0, 1);
     }
 
 

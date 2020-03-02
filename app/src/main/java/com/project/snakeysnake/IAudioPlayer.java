@@ -18,8 +18,8 @@ import java.io.IOException;
 //Delete unused imports later
 
 
-public interface AudioStrategyInterface {
+public interface IAudioPlayer {
     //play(audio file)
     public void AppleEatingSound();
-    public SoundPool findStrategy(SoundPool mSP);
+    public void findStrategy(SoundPool mSP) throws IOException;
 }

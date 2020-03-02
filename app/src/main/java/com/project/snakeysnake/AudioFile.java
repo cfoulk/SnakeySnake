@@ -21,15 +21,13 @@ import java.io.IOException;
 
 
 public class AudioFile {
-
-   // AudioOutputStrategy audioOutputStrategy = new AudioOutputStrategy();
-
-    //Declare Audio File Variables
-    //FileHandler fileHandler = new FileHandler();
-
+    Context context;
+    private int mEat_ID = -1;
+    private int mCrashID = -1;
+    private SoundPool mSP;
     //Constructor for Audio File Object
-    AudioFile(/* WEE WOO AUDIO WEE WOO STUFF */) throws IOException {
-        //this.stuff = wee woo stuff
+    AudioFile(Context context){
+        this.context = context;
 
     }
 
@@ -39,7 +37,25 @@ public class AudioFile {
 
     void RemoveAudioFile(){}
 
+    void AppleEatenSound() throws IOException {
 
+        try{
+            AssetManager assetManager = context.getAssets();
+            AssetFileDescriptor descriptor;
+
+            // Prepare the sounds in memory
+            descriptor = assetManager.openFd("get_apple.ogg");
+            this.mEat_ID = this.mSP.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("snake_death.ogg");
+            mCrashID = this.mSP.load(descriptor, 0);
+        } catch (IOException e) {
+            // Error
+        }
+
+
+
+    }
 
 
 

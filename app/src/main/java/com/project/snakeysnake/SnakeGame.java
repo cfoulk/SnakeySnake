@@ -60,7 +60,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         super(context);
 
         //Instantiating the strategy pattern to handle the audio here
-        AudioStrategyInterface outputStrategy = new AudioOutputStrategy(context);
+        IAudioPlayer outputStrategy = new AudioPlayer(context, mSP);
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
         // How many blocks of the same size will fit into the height
@@ -69,11 +69,11 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
         // Initializing the SoundPool from here as seamlessly as possible
-        AudioOutputStrategy audioOutputStrategy = new AudioOutputStrategy(context);
-        mSP = audioOutputStrategy.findStrategy(mSP);
+      //  AudioOutputStrategy audioOutputStrategy = new AudioOutputStrategy(context);
+      //  mSP = audioOutputStrategy.findStrategy(mSP);
 
 
-        /*
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -100,7 +100,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         } catch (IOException e) {
             // Error
-        }*/
+        }
         //TODO *NICK* Sound handling ends here
 
 
@@ -192,7 +192,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() {
-        AudioStrategyInterface audioOutputStrategy = new AudioOutputStrategy(getContext());
+        IAudioPlayer audioOutputStrategy = new AudioPlayer(getContext(), mSP);
 
         // Move the snake
         mSnake.move();
@@ -211,7 +211,7 @@ class SnakeGame extends SurfaceView implements Runnable{
             // Play a sound
 
             audioOutputStrategy.AppleEatingSound();
-           mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+           //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
 
         // Did the snake die?
