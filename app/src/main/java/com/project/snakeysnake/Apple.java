@@ -25,7 +25,7 @@ public class Apple{
 
     // An image to represent the apple
     //private final Bitmap mBitmapApple;
-    Bitmap mBitmapApple;
+    private final Bitmap mBitmapApple;
 
 
 
@@ -35,16 +35,12 @@ public class Apple{
         this.mSpawnRange = appleBuilder.mSpawnRange;
         this.mSize = appleBuilder.mSize;
         this.context = appleBuilder.context;
-        mBitmapApple = appleBuilder.mBitmapApple;
+        this.mBitmapApple = appleBuilder.mBitmapApple;
         this.location = appleBuilder.location;
 
 
 
-        // Load the image to the bitmap
-        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
 
-        // Resize the bitmap
-        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
 
         // Make a note of the passed in spawn range
         //mSpawnRange = sr;
@@ -124,10 +120,10 @@ public class Apple{
             this.mSpawnRange = mSpawnRange;
             // Make a note of the size of an apple
             this.mSize = mSize;
+
+
             // Hide the apple off-screen until the game starts
            // this.location = new Point();
-            this.mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);;
-            this.mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
 
         }
 
@@ -135,11 +131,13 @@ public class Apple{
 
 
 
-        public AppleBuilder goodAppleBitmap(Bitmap mBitmapApple){
+        public AppleBuilder mBitmapApple(){
             // Load the image to the bitmap
-            this.mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+
+            Bitmap mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
             // Resize the bitmap
-            this.mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, this.mSize, this.mSize, false);
+            mBitmapApple1 = Bitmap.createScaledBitmap(mBitmapApple1, this.mSize, this.mSize, false);
+            mBitmapApple = mBitmapApple1;
 
 
             return this;
@@ -148,7 +146,8 @@ public class Apple{
 
         // Draw the apple
         public Apple build(){
-            return new Apple(this);
+            Apple apple = new Apple(this);
+            return apple;
 
         }
 
