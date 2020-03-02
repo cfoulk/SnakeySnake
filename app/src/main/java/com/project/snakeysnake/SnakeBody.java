@@ -10,13 +10,18 @@ import android.graphics.Point;
 
 import java.util.ArrayList;
 
-public class SnakeBody {
+public class SnakeBody implements SnakeComponent{
 
     private Bitmap mBitmapBody;
+    private int mSegmentSize;
+
 
 
     //Create and scale the body
-    public SnakeBody(Context context, int ss) {
+    SnakeBody(Context context, int ss, int mSegmentSize) {
+
+        this.mSegmentSize = mSegmentSize;
+
         mBitmapBody = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.body);
@@ -27,7 +32,9 @@ public class SnakeBody {
     }
 
 
-    public void draw(ArrayList<Point> segmentLocations, int mSegmentSize, Paint paint, Canvas canvas) {
+
+    @Override
+    public void draw(ArrayList<Point> segmentLocations, Canvas canvas, Paint paint){
         for (int i = 1; i < segmentLocations.size(); i++) {
             canvas.drawBitmap(mBitmapBody,
                     segmentLocations.get(i).x

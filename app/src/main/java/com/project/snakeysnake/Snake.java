@@ -44,6 +44,7 @@ class Snake extends GameObject {
     private Bitmap mBitmapBody;
 
     private SnakeBody snakeBody;
+    private SnakeHead snakeHead;
 
 
     Snake(Context context, Point mr, int ss) {
@@ -57,6 +58,8 @@ class Snake extends GameObject {
         mMoveRange = mr;
 
         // Create and scale the bitmaps
+        snakeHead = new SnakeHead(context, ss, mSegmentSize, mr);
+        /*
         mBitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
                         R.drawable.head);
@@ -99,7 +102,7 @@ class Snake extends GameObject {
         matrix.preRotate(180);
         mBitmapHeadDown = Bitmap
                 .createBitmap(mBitmapHeadRight,
-                        0, 0, ss, ss, matrix, true);
+                        0, 0, ss, ss, matrix, true); */
 
         // Create and scale the body
         /*mBitmapBody = BitmapFactory
@@ -109,11 +112,11 @@ class Snake extends GameObject {
         mBitmapBody = Bitmap
                 .createScaledBitmap(mBitmapBody,
                         ss, ss, false);*/
-        snakeBody = new SnakeBody(context, ss);
+        snakeBody = new SnakeBody(context, ss, mSegmentSize);
 
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
-        halfWayPoint = mr.x * ss / 2;
+        //halfWayPoint = mr.x * ss / 2;
     }
 
     // Get the snake ready for a new game
@@ -208,10 +211,11 @@ class Snake extends GameObject {
         return false;
     }
 
+
     void draw(Canvas canvas, Paint paint) {
 
         // Don't run this code if ArrayList has nothing in it
-        if (!segmentLocations.isEmpty()) {
+        if (!segmentLocations.isEmpty()) { /*
             // All the code from this method goes here
             // Draw the head
             switch (heading) {
@@ -246,7 +250,8 @@ class Snake extends GameObject {
                             segmentLocations.get(0).y
                                     * mSegmentSize, paint);
                     break;
-            }
+            } */
+            snakeHead.draw(segmentLocations, canvas, paint);
 
             // Draw the snake body one block at a time
             /*for (int i = 1; i < segmentLocations.size(); i++) {
@@ -255,7 +260,7 @@ class Snake extends GameObject {
                                 * mSegmentSize,
                         segmentLocations.get(i).y
                                 * mSegmentSize, paint);*/
-            snakeBody.draw(segmentLocations, mSegmentSize, paint, canvas);
+            snakeBody.draw(segmentLocations, canvas, paint);
 
         }
     }
