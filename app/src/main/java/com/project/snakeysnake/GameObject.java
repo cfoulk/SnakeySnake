@@ -26,6 +26,8 @@ public class GameObject {
     Apple apple;
     Snake snake;
 
+
+
     Apple createBadApple(){
         Apple newBadApple = new Apple.AppleBuilder(
                 context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
@@ -43,6 +45,16 @@ public class GameObject {
 
         return newApple;
     }
+
+    public int statusSetter(){
+        //generate a random status number
+        return 1;
+    }
+
+
+
+
+
 
     Snake createSnake() {
         Snake newSnake = new Snake(context, point, blockSize);
