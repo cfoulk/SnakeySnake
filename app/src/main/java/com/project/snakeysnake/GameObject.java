@@ -27,12 +27,11 @@ public class GameObject {
     Snake snake;
     int status;
 
-    GameObject(Context context, Point point, int blockSize){
+    public GameObject(Context context, Point point, int blockSize){
         this.context = context;
         this.point = point;
         this.blockSize = blockSize;
     }
-
 
 
     Apple createBadApple(){

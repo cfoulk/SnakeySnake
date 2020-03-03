@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import java.util.Random;
 
-public class Apple extends GameObject{
+public class Apple{
 
     // The location of the apple on the grid
     // Not in pixels
@@ -34,6 +34,7 @@ public class Apple extends GameObject{
     /// Set up the apple in the constructor
 
     public Apple(AppleBuilder appleBuilder){
+
         this.mSpawnRange = appleBuilder.mSpawnRange;
         this.mSize = appleBuilder.mSize;
         this.context = appleBuilder.context;
