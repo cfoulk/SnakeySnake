@@ -23,12 +23,12 @@ public class AudioPlayer implements IAudioPlayer {
     private AssetManager assetManager;
 
     private IAudioPlayer player;
+    public AudioFile audioFile;
 
 
 
-
-   public AudioPlayer(SoundPool mSP){
-        this.mSP = build(mSP);
+   public AudioPlayer(AudioFile audioFile){
+        this.audioFile = audioFile;
     }
 
     public SoundPool build(SoundPool mSP){
