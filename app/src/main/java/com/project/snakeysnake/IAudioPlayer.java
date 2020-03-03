@@ -20,6 +20,9 @@ import java.io.IOException;
 
 public interface IAudioPlayer {
     //play(audio file)
-    public void playAppleEatingSound() throws IOException;
-   // public void findStrategy(SoundPool mSP) throws IOException;
+    public void playAppleEatingSound(SoundPool mSP) throws IOException;
+    public void playSnakeDeathSound(SoundPool mSP) throws IOException;
+    public SoundPool build();
+
+
 }
