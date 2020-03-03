@@ -63,7 +63,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     public SnakeGame(Context context, Point size) throws IOException {
         super(context);
 
-        //Instantiating the strategy pattern to handle the audio here
+
 
 
         // Work out how many pixels each block is
@@ -75,10 +75,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
         // Initializing the SoundPool from here as seamlessly as possible
 
+        //Instantiating the strategy pattern to handle the audio here
         assetManager = context.getAssets();
-
-
-
         //the following commented out section is replaced by the call
         // mSP = audioPlayer.mSP; above
         /*
@@ -117,9 +115,12 @@ class SnakeGame extends SurfaceView implements Runnable{
         mPaint = new Paint();
 
         // Call the constructors of our two game objects
+        GameObject gameObject = new GameObject();
+        Point point = new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh)
+       // mApple = gameObject.createApple(context, point, blockSize);
 
         mApple = new Apple.AppleBuilder(
-                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
+                context, point, blockSize)
                 .mBitmapApple()
                 .build();
 
