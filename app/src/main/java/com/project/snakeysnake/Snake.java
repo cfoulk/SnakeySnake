@@ -130,7 +130,7 @@ class Snake extends GameObject {
         return dead;
     }
 
-    boolean checkDinner(Point l) {
+    boolean checkDinner(Point l, Apple mApple) {
         //if (snakeXs[0] == l.x && snakeYs[0] == l.y) {
         if (segmentLocations.get(0).x == l.x &&
                 segmentLocations.get(0).y == l.y) {
@@ -140,7 +140,11 @@ class Snake extends GameObject {
             // This is OK because on the next call to
             // move it will take the position of
             // the segment in front of it
-            segmentLocations.add(new Point(-10, -10));
+
+            if(mApple.getStatus()){
+                segmentLocations.add(new Point(-10, -10));
+            }
+            //segmentLocations.add(new Point(-10, -10));
             return true;
         }
         return false;
