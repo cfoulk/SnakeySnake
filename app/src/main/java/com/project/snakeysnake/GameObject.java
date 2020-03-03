@@ -20,9 +20,24 @@ import java.io.IOException;
 
 public class GameObject {
 
+    Point point;
+    Context context;
+    int blockSize;
     Apple apple;
     Snake snake;
 
+    Apple createApple() {
+        Apple newApple = new Apple.AppleBuilder(
+                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
+                .mBitmapApple()
+                .build();
+    }
 
+    Snake createSnake() {
+        Snake newSnake = new Snake(context, point, blockSize);
+        //move call from SnakeGame class to here
+
+
+    }
 
 }
