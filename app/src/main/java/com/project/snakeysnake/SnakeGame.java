@@ -117,7 +117,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         // Call the constructors of our two game objects
 
         Point point = new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh);
-        GameObject gameObject = new GameObject(context, point, blockSize);
+       // GameObject gameObject = new GameObject(context, point, blockSize);
        // Apple mApple = new GameObject(context, point, blockSize).createApple();
 
         mApple = new Apple.AppleBuilder(
@@ -213,7 +213,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() throws IOException {
-    GameObject
+
 
         // Move the snake
         mSnake.move();
