@@ -223,15 +223,16 @@ class SnakeGame extends SurfaceView implements Runnable{
             // One day the apple will be ready!
             mApple.spawn();
 
-
             // Add to  mScore
-       /*     if(mApple.getStatus()){
+            if(mApple.getStatus() == 1){
                 mScore += 1;
-            }
-            else{
+            } else if(mApple.getStatus() == 2){
+                mScore += 2;
+            } else if(mApple.getStatus() == 3){
+                mScore += 3;
+            } else {
                 mScore -= 2;
             }
-*/
 
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
@@ -277,15 +278,17 @@ class SnakeGame extends SurfaceView implements Runnable{
             mApple2.spawn();
 
 //TODO GET THIS CODE INTEGRATED WHEN LOGIC IS FIGURED OUT BELOW
-   /*         // remove 2 for bad apple
-            if(mApple2.getStatus()){
+            // remove 2 for bad apple
+            if(mApple2.getStatus() == 1){
                 mScore += 1;
-            }
-            else{
+            } else if(mApple2.getStatus() == 2){
+                mScore += 2;
+            } else if(mApple2.getStatus() == 3){
+                mScore += 3;
+            } else {
                 mScore -= 2;
             }
-
-*/
+            
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
