@@ -19,6 +19,8 @@ public class Apple{
     private final Point mSpawnRange;
     private final int mSize;
     private final Context context;
+    private boolean status;
+
 
 
 
@@ -37,6 +39,7 @@ public class Apple{
         this.context = appleBuilder.context;
         this.mBitmapApple = appleBuilder.mBitmapApple;
         this.location = appleBuilder.location;
+        this.status = appleBuilder.status;
 
     }
 
@@ -86,6 +89,9 @@ public class Apple{
         private Bitmap mBitmapApple;
         // An interchangeable image to represent the apple
 
+        //The status of the apple. 1 or true = good, 0 or false = bad
+        private boolean status;
+
 
         /// Set up the apple in the constructor
         public AppleBuilder(Context context, Point mSpawnRange, int mSize){
@@ -100,8 +106,23 @@ public class Apple{
             this.location = new Point();
             this.location.x = -10;
 
+            status = setStatus();
+
         }
 
+        public boolean setStatus(){
+            Random rand = new Random();
+            int random = rand.nextInt(100);
+
+            boolean bool;
+
+            if(random < 50) {
+                bool = false;
+            }else{
+                bool = true;
+            }
+            return bool;
+        }
 
 
 
@@ -109,7 +130,14 @@ public class Apple{
         public AppleBuilder mBitmapApple(){
             // Load the image to the bitmap
 
-            Bitmap mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+            Bitmap mBitmapApple1;
+
+            if (status){
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+            }
+            else {
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.badapple);
+            }
             // Resize the bitmap
             mBitmapApple1 = Bitmap.createScaledBitmap(mBitmapApple1, this.mSize, this.mSize, false);
             mBitmapApple = mBitmapApple1;
@@ -123,18 +151,18 @@ public class Apple{
         public Apple build(){
             Apple apple = new Apple(this);
 
+            setStatus();
+
             return apple;
 
         }
 
 
-
-
-
     }
 
-
-
+    public boolean getStatus(){
+        return status;
+    }
 
 }
 

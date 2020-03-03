@@ -52,6 +52,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Snake mSnake;
     // And an apple
     private Apple mApple;
+    private Apple mApple2;
 
 
     // This is the constructor method that gets called
@@ -115,6 +116,11 @@ class SnakeGame extends SurfaceView implements Runnable{
                 .mBitmapApple()
                 .build();
 
+        mApple2 = new Apple.AppleBuilder(
+                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
+                .mBitmapApple()
+                .build();
+
 
         //Here lies the original call for apple object construction... R.I.P
         /*mApple = new Apple(context,
@@ -140,6 +146,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // Get the apple ready for dinner
         mApple.spawn();
+        mApple2.spawn();
 
         // Reset the mScore
         mScore = 0;
@@ -202,13 +209,19 @@ class SnakeGame extends SurfaceView implements Runnable{
         mSnake.move();
 
         // Did the head of the snake eat the apple?
-        if(mSnake.checkDinner(mApple.getLocation())){
+        if(mSnake.checkDinner(mApple.getLocation(), mApple)){
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
             mApple.spawn();
 
+
             // Add to  mScore
-            mScore = mScore + 1;
+            if(mApple.getStatus()){
+                mScore += 1;
+            }
+            else{
+                mScore -= 2;
+            }
 
 
             //TODO sound handled here, migrate necessary logic as needed *NICK*
@@ -223,6 +236,40 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             //following line moved down to inherited objects
            //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+        }
+
+        // Did the snake die?
+        if (mSnake.detectDeath()) {
+            // Pause the game ready to start again
+            mSP.play(mCrashID, 1, 1, 0, 0, 1);
+
+            mPaused =true;
+        }
+
+        if(mSnake.checkDinner(mApple2.getLocation(), mApple2)){
+            mApple2.spawn();
+
+            // remove 2 for bad apple
+            if(mApple2.getStatus()){
+                mScore += 1;
+            }
+            else{
+                mScore -= 2;
+            }
+
+
+            //TODO sound handled here, migrate necessary logic as needed *NICK*
+            // Play a sound
+            try{
+                audioInterface.playAppleEatingSound();
+                mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+            }
+            catch (Exception e){
+                System.out.println("couldnt play apple sound");
+            }
+
+            //following line moved down to inherited objects
+            //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
 
         // Did the snake die?
@@ -254,6 +301,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
+            mApple2.draw(mCanvas,mPaint);
             mSnake.draw(mCanvas, mPaint);
 
             // Draw some text while paused
