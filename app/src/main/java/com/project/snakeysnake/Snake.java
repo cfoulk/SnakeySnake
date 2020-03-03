@@ -141,7 +141,7 @@ class Snake extends GameObject {
             // move it will take the position of
             // the segment in front of it
 
-            if(mApple.getStatus()){
+            if(mApple.getStatus() != 0){
                 segmentLocations.add(new Point(-10, -10));
             }
             //segmentLocations.add(new Point(-10, -10));

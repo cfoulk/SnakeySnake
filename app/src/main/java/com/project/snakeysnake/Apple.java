@@ -19,7 +19,7 @@ public class Apple{
     private final Point mSpawnRange;
     private final int mSize;
     private final Context context;
-    private boolean status;
+    private final int status;
 
 
 
@@ -90,7 +90,7 @@ public class Apple{
         // An interchangeable image to represent the apple
 
         //The status of the apple. 1 or true = good, 0 or false = bad
-        private boolean status;
+        private int status;
 
 
         /// Set up the apple in the constructor
@@ -110,18 +110,11 @@ public class Apple{
 
         }
 
-        public boolean setStatus(){
+        public int setStatus(){
             Random rand = new Random();
-            int random = rand.nextInt(100);
+            int random = rand.nextInt(4);
 
-            boolean bool;
-
-            if(random < 50) {
-                bool = false;
-            }else{
-                bool = true;
-            }
-            return bool;
+            return random;
         }
 
 
@@ -132,12 +125,19 @@ public class Apple{
 
             Bitmap mBitmapApple1;
 
-            if (status){
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
-            }
-            else {
+
+
+            if(status == 0){
                 mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.badapple);
+            } else if(status == 1){
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+            } else if (status == 2){
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple2points);
+            } else{
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple3points);
             }
+
+
             // Resize the bitmap
             mBitmapApple1 = Bitmap.createScaledBitmap(mBitmapApple1, this.mSize, this.mSize, false);
             mBitmapApple = mBitmapApple1;
@@ -151,7 +151,7 @@ public class Apple{
         public Apple build(){
             Apple apple = new Apple(this);
 
-            setStatus();
+            //setStatus();
 
             return apple;
 
@@ -160,7 +160,7 @@ public class Apple{
 
     }
 
-    public boolean getStatus(){
+    public int getStatus(){
         return status;
     }
 
