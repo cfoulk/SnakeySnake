@@ -27,13 +27,17 @@ public class GameObject {
     Snake snake;
     int status;
 
-
+    GameObject(Context context, Point point, int blockSize){
+        this.context = context;
+        this.point = point;
+        this.blockSize = blockSize;
+    }
 
 
 
     Apple createBadApple(){
         Apple newBadApple = new Apple.AppleBuilder(
-                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
+                context, point, blockSize)
                 .mBitmapApple() //TODO change to bad apple bitmap
                 .build();
 
@@ -42,7 +46,7 @@ public class GameObject {
 
     Apple createApple() {
         Apple newApple = new Apple.AppleBuilder(
-                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
+                context, point, blockSize)
                 .mBitmapApple()
                 .build();
 
