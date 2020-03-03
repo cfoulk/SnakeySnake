@@ -60,7 +60,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // This is the constructor method that gets called
     // from SnakeActivity
-    public SnakeGame(Context context, Point size) {
+    public SnakeGame(Context context, Point size) throws IOException {
         super(context);
 
         //Instantiating the strategy pattern to handle the audio here
@@ -75,10 +75,9 @@ class SnakeGame extends SurfaceView implements Runnable{
         //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
         // Initializing the SoundPool from here as seamlessly as possible
 
-       // assetManager = context.getAssets();
-        //AudioFile sound = new AudioFile();
-        //audioPlayer = new AudioPlayer(mSP);
-        //mSP = audioPlayer.mSP;
+        assetManager = context.getAssets();
+
+
 
         //the following commented out section is replaced by the call
         // mSP = audioPlayer.mSP; above
