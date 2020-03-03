@@ -34,6 +34,7 @@ public class GameObject {
     }
 
 
+
     Apple createBadApple(){
         Apple newBadApple = new Apple.AppleBuilder(
                 context, point, blockSize)

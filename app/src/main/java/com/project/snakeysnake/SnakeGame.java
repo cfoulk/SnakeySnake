@@ -115,15 +115,16 @@ class SnakeGame extends SurfaceView implements Runnable{
         mPaint = new Paint();
 
         // Call the constructors of our two game objects
-        GameObject gameObject = new GameObject();
-        Point point = new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh);
-        Apple mApple = new GameObject(context, point, blockSize).createApple();
 
-        /*mApple = new Apple.AppleBuilder(
+        Point point = new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh);
+        GameObject gameObject = new GameObject(context, point, blockSize);
+       // Apple mApple = new GameObject(context, point, blockSize).createApple();
+
+        mApple = new Apple.AppleBuilder(
                 context, point, blockSize)
                 .mBitmapApple()
                 .build();
-*/
+
         mApple2 = new Apple.AppleBuilder(
                 context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
                 .mBitmapApple()
@@ -224,13 +225,13 @@ class SnakeGame extends SurfaceView implements Runnable{
 
 
             // Add to  mScore
-            if(mApple.getStatus()){
+       /*     if(mApple.getStatus()){
                 mScore += 1;
             }
             else{
                 mScore -= 2;
             }
-
+*/
 
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
@@ -275,7 +276,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         if(mSnake.checkDinner(mApple2.getLocation(), mApple2)){
             mApple2.spawn();
 
-            // remove 2 for bad apple
+   /*         // remove 2 for bad apple
             if(mApple2.getStatus()){
                 mScore += 1;
             }
@@ -283,7 +284,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 mScore -= 2;
             }
 
-
+*/
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{

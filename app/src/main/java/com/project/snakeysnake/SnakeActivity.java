@@ -5,6 +5,8 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 
+import java.io.IOException;
+
 public class SnakeActivity extends Activity {
 
     // Declare an instance of SnakeGame
@@ -23,7 +25,11 @@ public class SnakeActivity extends Activity {
         display.getSize(size);
 
         // Create a new instance of the SnakeEngine class
-        mSnakeGame = new SnakeGame(this, size);
+        try {
+            mSnakeGame = new SnakeGame(this, size);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Make snakeEngine the view of the Activity
         setContentView(mSnakeGame);

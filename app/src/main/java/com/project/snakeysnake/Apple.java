@@ -34,6 +34,7 @@ public class Apple{
     /// Set up the apple in the constructor
 
     public Apple(AppleBuilder appleBuilder){
+        super();
 
         this.mSpawnRange = appleBuilder.mSpawnRange;
         this.mSize = appleBuilder.mSize;

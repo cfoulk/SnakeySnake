@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
-class Snake extends GameObject {
+class Snake{
 
     // The location in the grid of all the segments
     private ArrayList<Point> segmentLocations;
