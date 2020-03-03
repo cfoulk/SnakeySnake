@@ -55,18 +55,22 @@ public class AudioPlayer implements IAudioPlayer {
     public void playAppleEatingSound(SoundPool mSP) throws IOException {
 
 
-        assetManager = this.context.getAssets();
+        assetManager = context.getAssets();
         // Creation of audioFile object for strategy pattern implemented
         // when multiple variations of the same task/operation is executed
-        AudioFile audioFile = new AudioFile(assetManager);
-
-
+        AudioFile audioFile = new AudioFile(assetManager, 0);
         AssetFileDescriptor descriptor;
-        descriptor = assetManager.openFd("get_apple.ogg");
-        mEat_ID = mSP.load(descriptor, 0);
-        mEat_ID = this.mSP.load(descriptor, 0);
-
+        descriptor = audioFile.AppleEatenSound(assetManager);
+        int mEat_ID = mSP.load(descriptor, 0);
         mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+
+
+        //AssetFileDescriptor descriptor;
+        //descriptor = assetManager.openFd("get_apple.ogg");
+        //mEat_ID = mSP.load(descriptor, 0);
+        //mEat_ID = this.mSP.load(descriptor, 0);
+
+     //   mSP.play(mEat_ID, 1, 1, 0, 0, 1);
     }
 
     @Override

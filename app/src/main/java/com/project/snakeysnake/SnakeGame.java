@@ -235,7 +235,7 @@ class SnakeGame extends SurfaceView implements Runnable{
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
-                AudioFile eatenApple = new AudioFile(assetManager);
+                AudioFile eatenApple = new AudioFile(assetManager, 0);
                 audioPlayer = new AudioPlayer(eatenApple);
                 audioPlayer.playAppleEatingSound(mSP);
 
@@ -254,7 +254,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         if (mSnake.detectDeath()) {
             try{
 
-                AudioFile audio = new AudioFile(assetManager);
+                AudioFile audio = new AudioFile(assetManager, 0);
                 audio.playSnakeDeathSound();
 
                // AudioPlayer audioInterface = new AudioPlayer(mSP);

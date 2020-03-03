@@ -21,8 +21,11 @@ public class AudioFile{
     public SoundPool mSP;
     AssetManager assetManager;
 
-    public AudioFile(AssetManager assetManager) {
+    public AudioFile(AssetManager assetManager, int sound) throws IOException {
         this.assetManager = assetManager;
+        if (sound == 0){
+            AppleEatenSound(assetManager);
+        }
     }
 
 
@@ -31,15 +34,17 @@ public class AudioFile{
       //  this.assetManager = assetManager;
    // }
 
-    void AppleEatenSound(AssetManager assetManager) throws IOException
+    AssetFileDescriptor AppleEatenSound(AssetManager assetManager) throws IOException
     {
-        System.out.println("You got to this place");
-        AssetFileDescriptor descriptor;
+        System.out.println("You got to this place"); //tester
 
+
+        AssetFileDescriptor descriptor;
         // Prepare the sounds in memory
         descriptor = assetManager.openFd("get_apple.ogg");
 
-        this.mEat_ID = this.mSP.load(descriptor, 0);
+        return descriptor;
+
 
 
 
