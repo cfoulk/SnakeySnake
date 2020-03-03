@@ -11,6 +11,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -63,8 +64,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         super(context);
 
         //Instantiating the strategy pattern to handle the audio here
-        audioPlayer = new AudioPlayer(mSP);
-        assetManager = context.getAssets();
+
 
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
@@ -74,7 +74,14 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
         // Initializing the SoundPool from here as seamlessly as possible
-        this.mSP = audioPlayer.mSP;
+
+       // assetManager = context.getAssets();
+        //AudioFile sound = new AudioFile();
+        //audioPlayer = new AudioPlayer(mSP);
+        //mSP = audioPlayer.mSP;
+
+        //the following commented out section is replaced by the call
+        // mSP = audioPlayer.mSP; above
         /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -228,7 +235,8 @@ class SnakeGame extends SurfaceView implements Runnable{
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
-
+                AudioFile eatenApple = new AudioFile(assetManager);
+                audioPlayer = new AudioPlayer(eatenApple);
                 audioPlayer.playAppleEatingSound(mSP);
 
                 //audioInterface.playAppleEatingSound(mSP);
@@ -279,7 +287,7 @@ class SnakeGame extends SurfaceView implements Runnable{
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
-                audioInterface.playAppleEatingSound();
+                audioPlayer.playAppleEatingSound(mSP);
                 mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
@@ -290,13 +298,7 @@ class SnakeGame extends SurfaceView implements Runnable{
             //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
         }
 
-        // Did the snake die?
-        if (mSnake.detectDeath()) {
-            // Pause the game ready to start again
-            mSP.play(mCrashID, 1, 1, 0, 0, 1);
 
-            mPaused =true;
-        }
 
     }
 
