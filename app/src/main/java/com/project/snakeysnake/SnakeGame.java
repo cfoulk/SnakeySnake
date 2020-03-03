@@ -154,6 +154,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
 
         // Get the apple ready for dinner
+
         mApple.spawn();
         mApple2.spawn();
 
@@ -212,7 +213,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() throws IOException {
-
+    GameObject
 
         // Move the snake
         mSnake.move();

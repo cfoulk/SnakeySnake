@@ -18,7 +18,7 @@ import android.view.SurfaceView;
 import java.io.IOException;
 
 
-public class GameObject {
+public class GameObject extends SnakeGame{
 
     Point point;
     Context context;
@@ -26,13 +26,16 @@ public class GameObject {
     Apple apple;
     Snake snake;
     int status;
+    Point size;
+    private int NUM_BLOCKS_WIDE;
 
-    public GameObject(Context context, Point point, int blockSize){
-        this.context = context;
-        this.point = point;
-        this.blockSize = blockSize;
+
+
+
+    public GameObject(Context context, Point size) throws IOException {
+        super(context, size);
+
     }
-
 
 
     Apple createBadApple(){
