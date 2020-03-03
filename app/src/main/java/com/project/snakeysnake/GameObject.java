@@ -26,17 +26,30 @@ public class GameObject {
     Apple apple;
     Snake snake;
 
+    Apple createBadApple(){
+        Apple newBadApple = new Apple.AppleBuilder(
+                context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
+                .mBitmapApple() //TODO change to bad apple bitmap
+                .build();
+
+        return newBadApple;
+    }
+
     Apple createApple() {
         Apple newApple = new Apple.AppleBuilder(
                 context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
                 .mBitmapApple()
                 .build();
+
+        return newApple;
     }
 
     Snake createSnake() {
         Snake newSnake = new Snake(context, point, blockSize);
         //move call from SnakeGame class to here
 
+
+        return newSnake;
 
     }
 
