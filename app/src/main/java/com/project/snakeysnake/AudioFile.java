@@ -20,18 +20,22 @@ import java.io.IOException;
 //TODO delete unused imports
 
 
-public class AudioFile {
+public class AudioFile{
     Context context;
     public int mEat_ID;
     public int mCrashID = -1;
     public SoundPool mSP;
     AssetManager assetManager;
 
-
-    //Constructor for Audio File Object
-    AudioFile(AssetManager assetManager){
+    public AudioFile(AssetManager assetManager) {
         this.assetManager = assetManager;
     }
+
+
+    //Constructor for Audio File Object
+   // AudioFile(AssetManager assetManager){
+      //  this.assetManager = assetManager;
+   // }
 
     void AppleEatenSound(AssetManager assetManager) throws IOException
     {

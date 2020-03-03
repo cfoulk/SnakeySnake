@@ -5,9 +5,7 @@ import android.content.res.AssetManager;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.media.audiofx.AudioEffect;
 import android.os.Build;
-import android.provider.MediaStore;
 
 import java.io.IOException;
 
@@ -17,7 +15,8 @@ import java.io.IOException;
 
 public class AudioPlayer implements IAudioPlayer {
 
-    private SoundPool mSP;
+
+    public SoundPool mSP;
     private int mEat_ID = -1;
     private int mCrashID = -1;
     private Context context;
@@ -26,32 +25,29 @@ public class AudioPlayer implements IAudioPlayer {
     private IAudioPlayer player;
 
 
-    public AudioPlayer(IAudioPlayer player){
-        this.player = player;
-    }
 
-    public SoundPool build(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
-
-            mSP = new SoundPool.Builder()
-                    .setMaxStreams(5)
-                    .setAudioAttributes(audioAttributes)
-                    .build();
-        } else {
-            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-        }
-
-        return mSP;
-
-    }
 
    public AudioPlayer(SoundPool mSP){
+        this.mSP = build(mSP);
+    }
 
+    public SoundPool build(SoundPool mSP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        mSP = new SoundPool.Builder()
+                .setMaxStreams(5)
+                .setAudioAttributes(audioAttributes)
+                .build();
+    } else {
+        mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+    }
+
+        return mSP;
 
     }
 

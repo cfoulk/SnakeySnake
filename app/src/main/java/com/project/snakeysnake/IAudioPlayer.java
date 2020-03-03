@@ -22,7 +22,7 @@ public interface IAudioPlayer {
     //play(audio file)
     public void playAppleEatingSound(SoundPool mSP) throws IOException;
     public void playSnakeDeathSound(SoundPool mSP) throws IOException;
-    public SoundPool build();
+    public SoundPool build(SoundPool mSP);
 
 
 }

@@ -52,7 +52,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Snake mSnake;
     // And an apple
     private Apple mApple;
-
+    public AudioPlayer audioPlayer;
+    private AssetManager assetManager;
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -60,8 +61,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         super(context);
 
         //Instantiating the strategy pattern to handle the audio here
-        AudioPlayer audioPlayer = new AudioPlayer(mSP);
-
+        audioPlayer = new AudioPlayer(mSP);
+        assetManager = context.getAssets();
 
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
@@ -71,7 +72,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         //TODO *Nick* migrate necessary things to sound strategy pattern classes whil allowing for
         // Initializing the SoundPool from here as seamlessly as possible
-        mSP = audioPlayer.build();
+        this.mSP = audioPlayer.mSP;
         /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
@@ -213,9 +214,10 @@ class SnakeGame extends SurfaceView implements Runnable{
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
-                AudioPlayer audioInterface = new AudioPlayer(mSP);
 
-                audioInterface.playAppleEatingSound(mSP);
+                audioPlayer.playAppleEatingSound(mSP);
+
+                //audioInterface.playAppleEatingSound(mSP);
                 //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
@@ -229,8 +231,12 @@ class SnakeGame extends SurfaceView implements Runnable{
         // Did the snake die?
         if (mSnake.detectDeath()) {
             try{
-                AudioPlayer audioInterface = new AudioPlayer(mSP);
-                audioInterface.playSnakeDeathSound(mSP);
+
+                AudioFile audio = new AudioFile(assetManager);
+                audio.playSnakeDeathSound();
+
+               // AudioPlayer audioInterface = new AudioPlayer(mSP);
+               // audioInterface.playSnakeDeathSound(mSP);
                 //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
