@@ -36,13 +36,13 @@ public class AudioFile{
 
     AssetFileDescriptor AppleEatenSound(AssetManager assetManager) throws IOException
     {
-        System.out.println("You got to this place"); //tester
+        //System.out.println("You got to this place"); //tester
 
 
         AssetFileDescriptor descriptor;
         // Prepare the sounds in memory
         descriptor = assetManager.openFd("get_apple.ogg");
-
+        int playThis = mSP.load(descriptor, 0);
         return descriptor;
 
 
@@ -59,7 +59,7 @@ public class AudioFile{
             descriptor = assetManager.openFd("snake_death.ogg");
             this.mCrashID = this.mSP.load(descriptor, 0);
         } catch (IOException e) {
-            System.out.println("couldn't find death of snake sound");
+        //    System.out.println("couldn't find death of snake sound");
         }
 
 

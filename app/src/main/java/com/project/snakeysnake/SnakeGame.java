@@ -1,4 +1,11 @@
+//Coded by Charles Foulk and Nick King for CSC 133
+//March 2nd 2020
+
+
 package com.project.snakeysnake;
+
+
+
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -246,7 +253,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
-                System.out.println("couldn't play apple sound");
+             ///   System.out.println("couldn't play apple sound");
             }
 
             //following line moved down to inherited objects
@@ -265,7 +272,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
-                System.out.println("couldn't play snake ded sound");
+             //   System.out.println("couldn't play snake ded sound");
                 //System.out.println("played sound anyway");
                // mSP.play(mCrashID, 1, 1, 0, 0, 1);
             }
@@ -297,7 +304,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
-                System.out.println("couldnt play apple sound");
+              //  System.out.println("couldnt play apple sound");
             }
 
             //following line moved down to inherited objects
