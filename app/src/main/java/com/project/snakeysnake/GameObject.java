@@ -25,6 +25,7 @@ public class GameObject {
     int blockSize;
     Apple apple;
     Snake snake;
+    int status;
 
 
 
