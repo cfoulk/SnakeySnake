@@ -276,6 +276,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         if(mSnake.checkDinner(mApple2.getLocation(), mApple2)){
             mApple2.spawn();
 
+//TODO GET THIS CODE INTEGRATED WHEN LOGIC IS FIGURED OUT BELOW
    /*         // remove 2 for bad apple
             if(mApple2.getStatus()){
                 mScore += 1;
