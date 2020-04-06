@@ -110,7 +110,7 @@ class Snake{
 
     }
 
-    boolean detectDeath() {
+    boolean detectDeath() { //TODO convert this into detect space base collision (enemies won)
         // Has the snake died?
         boolean dead = false;
 

@@ -58,11 +58,14 @@ public class Apple{
     }
 
     // This is called every time an apple is eaten
-    void spawn(){
+    void spawn(){ //TODO make this spawn call callable from somewhere else so that we can spown on command.
         // Choose two random values and place the apple
         Random random = new Random();
-        location.x = random.nextInt(mSpawnRange.x) + 1;
-        location.y = random.nextInt(mSpawnRange.y - 1) + 1;
+       // location.x = random.nextInt(mSpawnRange.x) + 1;
+       // location.y = random.nextInt(mSpawnRange.y - 1) + 1;
+        location.x = (mSpawnRange.x); //TODO use this call technique to spawn on command where wanted
+        location.y = (mSpawnRange.y) / 2;
+
     }
 
     // Draw the apple
@@ -107,7 +110,7 @@ public class Apple{
 
             // Hide the apple off-screen until the game starts
             this.location = new Point();
-            this.location.x = -10;
+            //this.location.x = -10;
 
             status = setStatus();
 

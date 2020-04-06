@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 
 import java.io.IOException;
 
@@ -49,4 +50,20 @@ public class SnakeActivity extends Activity {
         super.onPause();
         mSnakeGame.pause();
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        int x = (int)event.getX();
+        int y = (int)event.getY();
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_UP:
+        }
+
+        return false;
+    }
+
 }
