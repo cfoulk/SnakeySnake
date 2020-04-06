@@ -33,15 +33,15 @@ public class Turret {
 
     /// Set up the apple in the constructor
 
-    public Turret(AppleBuilder appleBuilder){
+    public Turret(TurretBuilder turretBuilder){
         super();
 
-        this.mSpawnRange = appleBuilder.mSpawnRange;
-        this.mSize = appleBuilder.mSize;
-        this.context = appleBuilder.context;
-        this.mBitmapApple = appleBuilder.mBitmapApple;
-        this.location = appleBuilder.location;
-        this.status = appleBuilder.status;
+        this.mSpawnRange = turretBuilder.mSpawnRange;
+        this.mSize = turretBuilder.mSize;
+        this.context = turretBuilder.context;
+        this.mBitmapApple = turretBuilder.mBitmapTurret;
+        this.location = turretBuilder.location;
+        this.status = turretBuilder.status;
 
     }
 
@@ -82,7 +82,7 @@ public class Turret {
 
 
 
-    public static class AppleBuilder{
+    public static class TurretBuilder {
 
         private Point location;
         // The range of values we can choose from to spawn an apple
@@ -91,7 +91,7 @@ public class Turret {
         private final Point mSpawnRange;
         private final int mSize;
 
-        private Bitmap mBitmapApple;
+        private Bitmap mBitmapTurret;
         // An interchangeable image to represent the apple
 
         //The status of the apple. 1 or true = good, 0 or false = bad
@@ -99,7 +99,7 @@ public class Turret {
 
 
         /// Set up the apple in the constructor
-        public AppleBuilder(Context context, Point mSpawnRange, int mSize){
+        public TurretBuilder(Context context, Point mSpawnRange, int mSize){
             this.context = context;
             // Make a note of the passed in spawn range
             this.mSpawnRange = mSpawnRange;
@@ -128,11 +128,11 @@ public class Turret {
 
 
 
-        public AppleBuilder mBitmapApple(){
+        public TurretBuilder mBitmapApple(){
             // Load the image to the bitmap
 
-            Bitmap mBitmapApple1;
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
+            Bitmap mTurret1;
+                mTurret1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
 
 
 
@@ -148,8 +148,8 @@ public class Turret {
 */
 
             // Resize the bitmap
-            mBitmapApple1 = Bitmap.createScaledBitmap(mBitmapApple1, this.mSize, this.mSize, false);
-            mBitmapApple = mBitmapApple1;
+            mTurret1 = Bitmap.createScaledBitmap(mTurret1, this.mSize, this.mSize, false);
+            mBitmapTurret = mTurret1;
 
 
             return this;

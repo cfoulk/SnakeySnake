@@ -7,7 +7,7 @@ import android.graphics.Point;
 
 import java.util.ArrayList;
 
-class Snake{
+class Enemy {
 
     // The location in the grid of all the segments
     private ArrayList<Point> segmentLocations;
@@ -31,11 +31,11 @@ class Snake{
     // Start by heading to the right
     private Heading heading = Heading.RIGHT;
 
-    private SnakeBody snakeBody;
+    //private SnakeBody snakeBody;
     private AlienInvader alienInvader;
 
 
-    Snake(Context context, Point mr, int ss) {
+    Enemy(Context context, Point mr, int ss) {
 
         // Initialize our ArrayList
         segmentLocations = new ArrayList<>();
@@ -47,7 +47,7 @@ class Snake{
 
         // Create and scale the bitmaps
         alienInvader = new AlienInvader(context, ss, mSegmentSize, mr, heading);
-        snakeBody = new SnakeBody(context, ss, mSegmentSize);
+        //snakeBody = new SnakeBody(context, ss, mSegmentSize);
 
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
@@ -161,7 +161,7 @@ class Snake{
         if (!segmentLocations.isEmpty()) {
 
             alienInvader.draw(segmentLocations, canvas, paint);
-            snakeBody.draw(segmentLocations, canvas, paint);
+            //snakeBody.draw(segmentLocations, canvas, paint);
 
         }
     }

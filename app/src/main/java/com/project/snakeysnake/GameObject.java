@@ -6,13 +6,13 @@ import android.graphics.Point;
 import java.io.IOException;
 
 
-public class GameObject extends SnakeGame{
+public class GameObject extends TowerGame {
 
     Point point;
     Context context;
     int blockSize;
     Turret turret;
-    Snake snake;
+    Enemy enemy;
     int status;
     Point size;
     private int NUM_BLOCKS_WIDE;
@@ -27,23 +27,23 @@ public class GameObject extends SnakeGame{
     }
 
 
-    Turret createBadApple(){
-        Turret newBadTurret = new Turret.AppleBuilder(
+    /*Turret createBadApple(){
+        Turret newBadTurret = new Turret.TurretBuilder(
                 context, point, blockSize)
                 .mBitmapApple() //TODO change to bad apple bitmap
                 .build();
 
         return newBadTurret;
-    }
+    } */
 
-    Turret createApple() {
-        Turret newTurret = new Turret.AppleBuilder(
+    /*Turret createApple() {
+        Turret newTurret = new Turret.TurretBuilder(
                 context, point, blockSize)
                 .mBitmapApple()
                 .build();
 
         return newTurret;
-    }
+    } */
 
     public int statusSetter(){
         //generate a random status number
@@ -55,12 +55,12 @@ public class GameObject extends SnakeGame{
 
 
 
-    Snake createSnake() {
-        Snake newSnake = new Snake(context, point, blockSize);
+    Enemy createSnake() {
+        Enemy newEnemy = new Enemy(context, point, blockSize);
         //move call from SnakeGame class to here
 
 
-        return newSnake;
+        return newEnemy;
 
     }
 

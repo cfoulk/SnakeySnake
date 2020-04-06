@@ -7,11 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
-import com.project.snakeysnake.Snake.Heading;
+import com.project.snakeysnake.Enemy.Heading;
 
 import java.util.ArrayList;
 
-class AlienInvader implements SnakeComponent{
+class AlienInvader {
 
     // A bitmap for each direction the head can face
     private Bitmap mBitmapHeadRight;
@@ -79,7 +79,7 @@ class AlienInvader implements SnakeComponent{
 
 
 
-    @Override
+
     public void draw(ArrayList<Point> segmentLocations, Canvas canvas, Paint paint) {
 
         switch (heading) {

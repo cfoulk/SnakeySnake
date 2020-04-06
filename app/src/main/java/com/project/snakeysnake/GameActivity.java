@@ -8,10 +8,10 @@ import android.view.MotionEvent;
 
 import java.io.IOException;
 
-public class SnakeActivity extends Activity {
+public class GameActivity extends Activity {
 
     // Declare an instance of SnakeGame
-    SnakeGame mSnakeGame;
+    TowerGame mTowerGame;
 
     // Set the game up
     @Override
@@ -28,27 +28,27 @@ public class SnakeActivity extends Activity {
 
         // Create a new instance of the SnakeEngine class
         try {
-            mSnakeGame = new SnakeGame(this, size);
+            mTowerGame = new TowerGame(this, size);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // Make snakeEngine the view of the Activity
-        setContentView(mSnakeGame);
+        setContentView(mTowerGame);
     }
 
     // Start the thread in snakeEngine
     @Override
     protected void onResume() {
         super.onResume();
-        mSnakeGame.resume();
+        mTowerGame.resume();
     }
 
     // Stop the thread in snakeEngine
     @Override
     protected void onPause() {
         super.onPause();
-        mSnakeGame.pause();
+        mTowerGame.pause();
     }
 
     @Override
