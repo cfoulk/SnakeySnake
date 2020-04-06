@@ -56,10 +56,10 @@ class SnakeGame extends SurfaceView implements Runnable{
     // A snake ssss
     private Snake mSnake;
     // And an apple
-    private Turret mTurret;
-    private Turret mTurret2;
+    private Turret mApple;
+    private Turret mApple2;
 
-    public AudioPlayer audioPlayer;
+
     private AssetManager assetManager;
 
     // This is the constructor method that gets called
@@ -124,12 +124,12 @@ class SnakeGame extends SurfaceView implements Runnable{
        // GameObject gameObject = new GameObject(context, point, blockSize);
        // Apple mApple = new GameObject(context, point, blockSize).createApple();
 
-        mTurret = new Turret.AppleBuilder(
+        mApple = new Turret.AppleBuilder(
                 context, point, blockSize)
                 .mBitmapApple()
                 .build();
 
-        mTurret2 = new Turret.AppleBuilder(
+        mApple2 = new Turret.AppleBuilder(
                 context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
                 .mBitmapApple()
                 .build();
@@ -159,8 +159,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // Get the apple ready for dinner
 
-        mTurret.spawn();
-        mTurret2.spawn();
+        mApple.spawn();
+        mApple2.spawn();
 
         // Reset the mScore
         mScore = 0;
@@ -223,17 +223,17 @@ class SnakeGame extends SurfaceView implements Runnable{
         mSnake.move();
 
         // Did the head of the snake eat the apple?
-        if(mSnake.checkDinner(mTurret.getLocation(), mTurret)){
+        if(mSnake.checkDinner(mApple.getLocation(), mApple)){
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
-            mTurret.spawn();
+            mApple.spawn();
 
             // Add to  mScore
-            if(mTurret.getStatus() == 1){
+            if(mApple.getStatus() == 1){
                 mScore += 1;
-            } else if(mTurret.getStatus() == 2){
+            } else if(mApple.getStatus() == 2){
                 mScore += 2;
-            } else if(mTurret.getStatus() == 3){
+            } else if(mApple.getStatus() == 3){
                 mScore += 3;
             } else {
                 mScore -= 2;
@@ -241,7 +241,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
-            try{
+          /*  try{
                 AudioFile eatenApple = new AudioFile(assetManager, 0);
                 audioPlayer = new AudioPlayer(eatenApple);
                 audioPlayer.playAppleEatingSound(mSP);
@@ -272,33 +272,33 @@ class SnakeGame extends SurfaceView implements Runnable{
              //   System.out.println("couldn't play snake ded sound");
                 //System.out.println("played sound anyway");
                // mSP.play(mCrashID, 1, 1, 0, 0, 1);
-            }
+            }*/
             // Pause the game ready to start again
 
 
             mPaused =true;
         }
 
-        if(mSnake.checkDinner(mTurret2.getLocation(), mTurret2)){
-            mTurret2.spawn();
+        if(mSnake.checkDinner(mApple2.getLocation(), mApple2)){
+            mApple2.spawn();
 
 //TODO GET THIS CODE INTEGRATED WHEN LOGIC IS FIGURED OUT BELOW
             // remove 2 for bad apple
-            if(mTurret2.getStatus() == 1){
+            if(mApple2.getStatus() == 1){
                 mScore += 1;
-            } else if(mTurret2.getStatus() == 2){
+            } else if(mApple2.getStatus() == 2){
                 mScore += 2;
-            } else if(mTurret2.getStatus() == 3){
+            } else if(mApple2.getStatus() == 3){
                 mScore += 3;
             } else {
                 mScore -= 2;
             }
-            
+
             //TODO sound handled here, migrate necessary logic as needed *NICK*
             // Play a sound
             try{
-                audioPlayer.playAppleEatingSound(mSP);
-                mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+               // audioPlayer.playAppleEatingSound(mSP);
+               // mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             }
             catch (Exception e){
               //  System.out.println("couldnt play apple sound");
@@ -341,8 +341,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             // Draw the apple and the snake
 
-            mTurret.draw(mCanvas, mPaint);
-            mTurret2.draw(mCanvas,mPaint);
+            mApple.draw(mCanvas, mPaint);
+            mApple2.draw(mCanvas,mPaint);
             mSnake.draw(mCanvas, mPaint);
 
             // Draw some text while paused
