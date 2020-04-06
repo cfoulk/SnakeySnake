@@ -8,19 +8,13 @@ package com.project.snakeysnake;
 
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.SoundPool;
-import android.os.Build;
-import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -62,8 +56,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     // A snake ssss
     private Snake mSnake;
     // And an apple
-    private Apple mApple;
-    private Apple mApple2;
+    private Turret mTurret;
+    private Turret mTurret2;
 
     public AudioPlayer audioPlayer;
     private AssetManager assetManager;
@@ -130,12 +124,12 @@ class SnakeGame extends SurfaceView implements Runnable{
        // GameObject gameObject = new GameObject(context, point, blockSize);
        // Apple mApple = new GameObject(context, point, blockSize).createApple();
 
-        mApple = new Apple.AppleBuilder(
+        mTurret = new Turret.AppleBuilder(
                 context, point, blockSize)
                 .mBitmapApple()
                 .build();
 
-        mApple2 = new Apple.AppleBuilder(
+        mTurret2 = new Turret.AppleBuilder(
                 context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize)
                 .mBitmapApple()
                 .build();
@@ -165,8 +159,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // Get the apple ready for dinner
 
-        mApple.spawn();
-        mApple2.spawn();
+        mTurret.spawn();
+        mTurret2.spawn();
 
         // Reset the mScore
         mScore = 0;
@@ -229,17 +223,17 @@ class SnakeGame extends SurfaceView implements Runnable{
         mSnake.move();
 
         // Did the head of the snake eat the apple?
-        if(mSnake.checkDinner(mApple.getLocation(), mApple)){
+        if(mSnake.checkDinner(mTurret.getLocation(), mTurret)){
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
-            mApple.spawn();
+            mTurret.spawn();
 
             // Add to  mScore
-            if(mApple.getStatus() == 1){
+            if(mTurret.getStatus() == 1){
                 mScore += 1;
-            } else if(mApple.getStatus() == 2){
+            } else if(mTurret.getStatus() == 2){
                 mScore += 2;
-            } else if(mApple.getStatus() == 3){
+            } else if(mTurret.getStatus() == 3){
                 mScore += 3;
             } else {
                 mScore -= 2;
@@ -285,16 +279,16 @@ class SnakeGame extends SurfaceView implements Runnable{
             mPaused =true;
         }
 
-        if(mSnake.checkDinner(mApple2.getLocation(), mApple2)){
-            mApple2.spawn();
+        if(mSnake.checkDinner(mTurret2.getLocation(), mTurret2)){
+            mTurret2.spawn();
 
 //TODO GET THIS CODE INTEGRATED WHEN LOGIC IS FIGURED OUT BELOW
             // remove 2 for bad apple
-            if(mApple2.getStatus() == 1){
+            if(mTurret2.getStatus() == 1){
                 mScore += 1;
-            } else if(mApple2.getStatus() == 2){
+            } else if(mTurret2.getStatus() == 2){
                 mScore += 2;
-            } else if(mApple2.getStatus() == 3){
+            } else if(mTurret2.getStatus() == 3){
                 mScore += 3;
             } else {
                 mScore -= 2;
@@ -347,8 +341,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             // Draw the apple and the snake
 
-            mApple.draw(mCanvas, mPaint);
-            mApple2.draw(mCanvas,mPaint);
+            mTurret.draw(mCanvas, mPaint);
+            mTurret2.draw(mCanvas,mPaint);
             mSnake.draw(mCanvas, mPaint);
 
             // Draw some text while paused
@@ -387,7 +381,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 }
 
                 // Let the Snake class handle the input
-                mSnake.switchHeading(motionEvent);
+                //mSnake.switchHeading(motionEvent);
                 break;
 
             default:

@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import java.util.Random;
 
-public class Apple{
+public class Turret {
 
     // The location of the apple on the grid
     // Not in pixels
@@ -33,7 +33,7 @@ public class Apple{
 
     /// Set up the apple in the constructor
 
-    public Apple(AppleBuilder appleBuilder){
+    public Turret(AppleBuilder appleBuilder){
         super();
 
         this.mSpawnRange = appleBuilder.mSpawnRange;
@@ -157,12 +157,12 @@ public class Apple{
 
 
         // Draw the apple
-        public Apple build(){
-            Apple apple = new Apple(this);
+        public Turret build(){
+            Turret turret = new Turret(this);
 
             //setStatus();
 
-            return apple;
+            return turret;
 
         }
 

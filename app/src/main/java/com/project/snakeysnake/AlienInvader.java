@@ -11,7 +11,7 @@ import com.project.snakeysnake.Snake.Heading;
 
 import java.util.ArrayList;
 
-class SnakeHead implements SnakeComponent{
+class AlienInvader implements SnakeComponent{
 
     // A bitmap for each direction the head can face
     private Bitmap mBitmapHeadRight;
@@ -24,7 +24,7 @@ class SnakeHead implements SnakeComponent{
     private Heading heading;
 
 
-    SnakeHead(Context context, int ss, int mSegmentSize, Point mr, Heading heading){
+    AlienInvader(Context context, int ss, int mSegmentSize, Point mr, Heading heading){
 
         this.mSegmentSize = mSegmentSize;
 
