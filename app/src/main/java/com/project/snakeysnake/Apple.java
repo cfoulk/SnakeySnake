@@ -63,8 +63,8 @@ public class Apple{
         Random random = new Random();
        // location.x = random.nextInt(mSpawnRange.x) + 1;
        // location.y = random.nextInt(mSpawnRange.y - 1) + 1;
-        location.x = (mSpawnRange.x); //TODO use this call technique to spawn on command where wanted
-        location.y = (mSpawnRange.y) / 2;
+        location.x = (mSpawnRange.x - 6); //TODO use this call technique to spawn on command where wanted
+        location.y = (mSpawnRange.y- 10) / 2;
 
     }
 
