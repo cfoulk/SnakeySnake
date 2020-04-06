@@ -33,20 +33,20 @@ class SnakeHead implements SnakeComponent{
 
         mBitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.alien_octo);
 
         // Create 3 more versions of the head for different headings
         mBitmapHeadLeft = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.alien_octo);
 
         mBitmapHeadUp = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.alien_octo);
 
         mBitmapHeadDown = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.alien_octo);
 
         // Modify the bitmaps to face the snake head
         // in the correct direction
