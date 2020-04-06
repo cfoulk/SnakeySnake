@@ -104,6 +104,7 @@ public class Apple{
             this.mSize = mSize;
 
 
+
             // Hide the apple off-screen until the game starts
             this.location = new Point();
             this.location.x = -10;
@@ -113,8 +114,10 @@ public class Apple{
         }
 
         public int setStatus(){
-            Random rand = new Random();
-            int random = rand.nextInt(4);
+            //Random rand = new Random();
+            //int random = rand.nextInt(4);
+
+            int random = 1;
 
             return random;
         }
@@ -127,6 +130,7 @@ public class Apple{
 
             Bitmap mBitmapApple1;
                 mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
+
 
 
       /*      if(status == 0){
@@ -163,6 +167,7 @@ public class Apple{
     }
 
     public int getStatus(){
+
         return status;
     }
 

@@ -22,6 +22,7 @@ class Snake{
     // Where is the centre of the screen
     // horizontally in pixels?
     private int halfWayPoint;
+    private int leftSidePoint;
 
     // For tracking movement Heading
     public enum Heading {
@@ -51,7 +52,9 @@ class Snake{
 
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
-        halfWayPoint = mr.x * ss / 2;
+        //halfWayPoint = mr.x * ss / 2;
+        halfWayPoint = mr.x * ss;
+        //leftSidePoint = mr.x * ss;
     }
 
     // Get the snake ready for a new game
@@ -64,7 +67,9 @@ class Snake{
         segmentLocations.clear();
 
         // Start with a single snake segment
-        segmentLocations.add(new Point(w / 2, h / 2));
+        segmentLocations.add(new Point(w / 10, h / 2));
+        //TODO this starts the path of enemy on far left side of path
+
     }
 
 
