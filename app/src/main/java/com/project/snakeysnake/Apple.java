@@ -130,13 +130,13 @@ public class Apple{
 
 
             if(status == 0){
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.badapple);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
             } else if(status == 1){
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
             } else if (status == 2){
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple2points);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
             } else{
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple3points);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
             }
 
 
