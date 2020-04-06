@@ -10,6 +10,7 @@ package com.project.snakeysnake;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -317,17 +318,25 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     }
 
+    Context context;
+
+    {
+        context = getContext();
+    }
 
     // Do all the drawing
     public void draw() {
         // Get a lock on the mCanvas
         if (mSurfaceHolder.getSurface().isValid()) {
+            //mCanvas.setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.star_background));
             mCanvas = mSurfaceHolder.lockCanvas();
 
             // Fill the screen with a color
-            mCanvas.drawColor(Color.argb(255, 26, 200, 182)); //TODO REPLACING BACKGROUND IS HANDLED HERE
+           // mCanvas.drawColor(Color.argb(255, 26, 200, 182)); //TODO REPLACING BACKGROUND IS HANDLED HERE
+            mCanvas.drawBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.star_background), NUM_BLOCKS_WIDE, mNumBlocksHigh, mPaint);
+           // mCanvas.setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.star_background));
 
-           // mCanvas.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.star_background));
+
 
             // Set the size and color of the mPaint for the text
             mPaint.setColor(Color.argb(255, 255, 255, 255));
@@ -337,6 +346,7 @@ class SnakeGame extends SurfaceView implements Runnable{
             mCanvas.drawText("" + mScore, 20, 120, mPaint);
 
             // Draw the apple and the snake
+
             mApple.draw(mCanvas, mPaint);
             mApple2.draw(mCanvas,mPaint);
             mSnake.draw(mCanvas, mPaint);

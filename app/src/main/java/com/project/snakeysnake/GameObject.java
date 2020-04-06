@@ -35,6 +35,7 @@ public class GameObject extends SnakeGame{
     public GameObject(Context context, Point size) throws IOException {
         super(context, size);
 
+
     }
 
 
