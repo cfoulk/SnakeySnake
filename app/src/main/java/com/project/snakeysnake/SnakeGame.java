@@ -10,6 +10,7 @@ package com.project.snakeysnake;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -33,6 +34,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     // Is the game currently playing and or paused?
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
+
 
 
     //TODO migrate this to strategy pattern
@@ -323,7 +325,9 @@ class SnakeGame extends SurfaceView implements Runnable{
             mCanvas = mSurfaceHolder.lockCanvas();
 
             // Fill the screen with a color
-            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
+            mCanvas.drawColor(Color.argb(255, 26, 200, 182)); //TODO REPLACING BACKGROUND IS HANDLED HERE
+
+           // mCanvas.setBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.star_background));
 
             // Set the size and color of the mPaint for the text
             mPaint.setColor(Color.argb(255, 255, 255, 255));
@@ -348,7 +352,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 // We will give this an international upgrade soon
 
                 //i uncommented this code and it seems to work, might be temporary
-                mCanvas.drawText("Tap To Play!", 200, 700, mPaint);
+                mCanvas.drawText("Tap to Play!", 200, 700, mPaint);
                 /*mCanvas.drawText(getResources().
                                 getString(R.string.tap_to_play),
                         200, 700, mPaint);*/

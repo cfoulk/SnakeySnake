@@ -126,19 +126,19 @@ public class Apple{
             // Load the image to the bitmap
 
             Bitmap mBitmapApple1;
-
-
-
-            if(status == 0){
                 mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
+
+
+      /*      if(status == 0){
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.badapple);
             } else if(status == 1){
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
             } else if (status == 2){
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple2points);
             } else{
-                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.guns);
+                mBitmapApple1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple3points);
             }
-
+*/
 
             // Resize the bitmap
             mBitmapApple1 = Bitmap.createScaledBitmap(mBitmapApple1, this.mSize, this.mSize, false);

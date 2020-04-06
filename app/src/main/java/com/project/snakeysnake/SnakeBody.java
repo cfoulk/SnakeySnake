@@ -24,7 +24,7 @@ public class SnakeBody implements SnakeComponent{
 
         mBitmapBody = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.body);
+                        R.drawable.alien_octo);
 
         mBitmapBody = Bitmap
                 .createScaledBitmap(mBitmapBody,
